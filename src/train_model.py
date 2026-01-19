@@ -8,25 +8,28 @@ from data_preprocessing import load_and_prepare_data
 
 def train_and_select_best():
     X_train, X_val, y_train, y_val = load_and_prepare_data()
-
+    
     vectorizer = TfidfVectorizer(
         ngram_range=(1, 2),
         max_features=5000,
-        stop_words="english"
+        stop_words="english",
+        analyzer="char_wb",
+        ngram_range=(3, 5),
+        max_features=50000
     )
 
     X_train_vec = vectorizer.fit_transform(X_train)
     X_val_vec = vectorizer.transform(X_val)
 
     models = {
-    "LogisticRegression": LogisticRegression(
-        max_iter=500,
-        class_weight="balanced"
-    ),
-    "LinearSVM": LinearSVC(
-        class_weight="balanced"
-    )
-}
+        "LogisticRegression": LogisticRegression(
+            max_iter=500,
+            class_weight="balanced"
+        ),
+        "LinearSVM": LinearSVC(
+            class_weight="balanced"
+        )
+    }
 
     best_model = None
     best_f1 = 0
