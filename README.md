@@ -40,12 +40,18 @@ Data_science_rupa
 - Combining them into a single text feature
 
 ### 2. **Feature Extraction**
+## 🧠 2. Feature Extraction
 Used **TF-IDF Vectorizer** with:
-- `ngram_range=(1,2)`
-- `max_features=20000`
-- `stop_words="english"`
 
-This captures both unigrams and bigrams, improving text representation.
+- analyzer="char_wb"
+- ngram_range=(3,5)
+- max_features=50000
+
+This character-level TF-IDF setup captures subword patterns, 
+handles typos, and improves performance for noisy review text. 
+It is especially effective for sentiment-based text classification 
+and works well for medium-sized datasets like this one.
+
 
 ### 3. **Model Training**
 Two models were trained:
