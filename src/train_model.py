@@ -19,9 +19,14 @@ def train_and_select_best():
     X_val_vec = vectorizer.transform(X_val)
 
     models = {
-        "LogisticRegression": LogisticRegression(max_iter=500),
-        "LinearSVM": LinearSVC()
-    }
+    "LogisticRegression": LogisticRegression(
+        max_iter=500,
+        class_weight="balanced"
+    ),
+    "LinearSVM": LinearSVC(
+        class_weight="balanced"
+    )
+}
 
     best_model = None
     best_f1 = 0
