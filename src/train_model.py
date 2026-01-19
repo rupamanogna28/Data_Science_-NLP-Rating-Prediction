@@ -10,8 +10,6 @@ def train_and_select_best():
     X_train, X_val, y_train, y_val = load_and_prepare_data()
     
     vectorizer = TfidfVectorizer(
-        ngram_range=(1, 2),
-        max_features=5000,
         stop_words="english",
         analyzer="char_wb",
         ngram_range=(3, 5),
